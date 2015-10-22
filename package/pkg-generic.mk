@@ -304,6 +304,7 @@ be selected at a time. Please fix your configuration)
 endif
 endef
 
+
 ################################################################################
 # inner-generic-package -- generates the make targets needed to build a
 # generic package
@@ -340,6 +341,8 @@ endef
 ################################################################################
 
 define inner-generic-package
+
+$(eval $(call package-overlay,$(call qstrip,$(BR2_PACKAGE_OVERLAY_DIR)),$(1)/$(1).mk))
 
 # Define default values for various package-related variables, if not
 # already defined. For some variables (version, source, site and
@@ -894,6 +897,7 @@ endif
 
 endif # $(2)_KCONFIG_VAR
 endef # inner-generic-package
+
 
 ################################################################################
 # generic-package -- the target generator macro for generic packages

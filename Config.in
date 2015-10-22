@@ -603,6 +603,11 @@ config BR2_GLOBAL_PATCH_DIR
 	  Otherwise, if the directory <global-patch-dir>/<packagename> exists,
 	  then all *.patch files in the directory will be applied.
 
+config BR2_PACKAGE_OVERLAY_DIR
+	string "package overlay directory"
+	help
+	  Dirictory with package overlay directory structure.
+
 menu "Advanced"
 
 config BR2_COMPILER_PARANOID_UNSAFE_PATH
