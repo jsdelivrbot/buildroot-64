@@ -150,3 +150,16 @@ define legal-license-file # pkg, filename, file-fullpath, {HOST|TARGET}
 	mkdir -p $(LICENSE_FILES_DIR_$(4))/$(1)/$(dir $(2)) && \
 	cp $(3) $(LICENSE_FILES_DIR_$(4))/$(1)/$(2)
 endef
+
+newline-stub = __NEWLINE_STUB__
+
+# package-overlay -- load and eval makefile in place
+# example:
+#   $(eval $(call  package-overlay,$(call qstrip,$(BR2_PACKAGE_OVERLAY_DIR)),RELATIVE_PATH_TO_THE_FILE))
+define package-overlay
+ifneq ("$(1)","")
+ifneq ($$(wildcard $(1)/$(2)),)
+$$(eval $$(subst $$(newline-stub),$$(sep),$$(shell perl -p -e 's/\n/$$(newline-stub)/' $(1)/$(2))))
+endif
+endif
+endef
