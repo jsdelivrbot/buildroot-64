@@ -1,0 +1,27 @@
+Correct configuration error on recent version autoreconf.
+
+Need call AM_PROG_AR macro.
+And not prtable patterns %. in the make files.
+
+Last update distribution in the 2012.
+
+Signed-off-by: Viacheslav Volkov <sv99@inbox.ru>
+
+Index: b/configure.ac
+===================================================================
+diff --git a/configure.ac b/configure.ac
+index 256aedb..5aa5689 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -3,10 +3,11 @@ AC_PREREQ([2.61])
+ AC_INIT([zbar], [0.10], [spadix@users.sourceforge.net])
+ AC_CONFIG_AUX_DIR(config)
+ AC_CONFIG_MACRO_DIR(config)
+-AM_INIT_AUTOMAKE([1.10 -Wall -Werror foreign subdir-objects std-options dist-bzip2])
++AM_INIT_AUTOMAKE([1.10 -Wall -Werror -Wno-portability foreign subdir-objects std-options dist-bzip2])
+ AC_CONFIG_HEADERS([include/config.h])
+ AC_CONFIG_SRCDIR(zbar/scanner.c)
+ LT_PREREQ([2.2])
++m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
+ LT_INIT([dlopen win32-dll])
+ LT_LANG([Windows Resource])

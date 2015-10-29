@@ -1,0 +1,21 @@
+Correct function prototipe for using with libjpeg.
+
+Last update distribution in the 2012.
+
+Signed-off-by: Viacheslav Volkov <sv99@inbox.ru>
+
+Index: b/zbar/jpeg.c
+===================================================================
+diff --git a/zbar/jpeg.c b/zbar/jpeg.c
+index 972bfea..fdd1619 100644
+--- a/zbar/jpeg.c
++++ b/zbar/jpeg.c
+@@ -68,7 +68,7 @@ void init_source (j_decompress_ptr cinfo)
+     cinfo->src->bytes_in_buffer = img->datalen;
+ }
+ 
+-int fill_input_buffer (j_decompress_ptr cinfo)
++boolean fill_input_buffer (j_decompress_ptr cinfo)
+ {
+     /* buffer underrun error case */
+     cinfo->src->next_input_byte = fake_eoi;
