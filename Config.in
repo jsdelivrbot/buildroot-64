@@ -2,6 +2,9 @@
 
 mainmenu "Buildroot $BR2_VERSION Configuration"
 
+config BR2_PACKAGE_OVERLAY_DIR
+	string "package overlay dir"
+
 config BR2_HAVE_DOT_CONFIG
 	bool
 	default y

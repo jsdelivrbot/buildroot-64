@@ -218,6 +218,8 @@ ifeq ($(filter $(noconfig_targets),$(MAKECMDGOALS)),)
 -include $(BR2_CONFIG)
 endif
 
+BR_PACKAGE_OVERLAY_DIR := $(call qstrip,$(BR2_PACKAGE_OVERLAY_DIR))
+
 # To put more focus on warnings, be less verbose as default
 # Use 'make V=1' to see the full commands
 ifeq ("$(origin V)", "command line")

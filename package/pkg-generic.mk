@@ -349,6 +349,13 @@ endef
 
 define inner-generic-package
 
+ifneq ($$(BR_PACKAGE_OVERLAY_DIR),)
+ifneq ($$(wildcard $$(BR_PACKAGE_OVERLAY_DIR)/$(1)/$(1).mk),)
+$$(warning Applying overlay for package $(1))
+include $$(BR_PACKAGE_OVERLAY_DIR)/$(1)/$(1).mk
+endif
+endif
+
 # Ensure the package is only declared once, i.e. do not accept that a
 # package be re-defined by a br2-external tree
 ifneq ($(call strip,$(filter $(1),$(PACKAGES_ALL))),)
